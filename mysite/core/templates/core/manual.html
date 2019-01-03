@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block extra_head %}
+  <script src="{% static 'vendor/moment.js-2.23.0/moment.min.js' %}"></script>
+
+  <link rel="stylesheet" href="{% static 'vendor/bootstrap-4-5.1.2/css/tempusdominus-bootstrap-4.min.css' %}">
+  <script src="{% static 'vendor/bootstrap-4-5.1.2/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+  <form method="post" autocomplete="off" novalidate>
+    {% csrf_token %}
+
+    <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+      {{ form.date }}
+      <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+
+  <script>
+    $(function () {
+      $("#datetimepicker1").datetimepicker({
+        format: 'DD/MM/YYYY HH:mm',
+      });
+    });
+  </script>
+
+{% endblock %}
